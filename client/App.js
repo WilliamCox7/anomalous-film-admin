@@ -1,21 +1,14 @@
-import { React, Component, connect, axios, BrowserRouter, Switch, Route } from './packages';
-import { Home, Login } from './components';
-import { setPost } from './reducers/post';
+import { React, Component, BrowserRouter, Switch, Route } from './packages';
+import { Home, Login, Nav } from './components';
 import './reset.scss';
 import './main.scss';
 
 class App extends Component {
-
-  componentDidMount() {
-    axios.get('/post').then((response) => {
-      this.props.setPost(response.data);
-    });
-  }
-
   render() {
     return (
       <BrowserRouter>
         <div className="App">
+          <Nav />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
         </div>
@@ -24,8 +17,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  setPost: setPost
-}
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

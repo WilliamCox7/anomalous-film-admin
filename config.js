@@ -4,5 +4,6 @@ const MONGO = "mongodb://localhost:27017/anomalous";
 
 module.exports = {
   mongoURI: MONGO,
-  port: PORT
+  port: PORT,
+  secret: "af9w84oa4noifnadsvwe45ve5vasearf"
 }
