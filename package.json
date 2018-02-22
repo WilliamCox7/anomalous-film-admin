@@ -30,9 +30,11 @@
     "webpack": "^1.14.0"
   },
   "dependencies": {
+    "autosize": "^4.0.0",
     "axios": "^0.16.2",
     "body-parser": "^1.16.1",
     "cookie-parser": "^1.4.3",
+    "debounce": "^1.1.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "mongodb": "^2.2.33",
@@ -45,6 +47,7 @@
     "react-router-dom": "^4.2.2",
     "react-youtube": "^7.5.0",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "youtube-validate": "^1.2.4"
   }
 }

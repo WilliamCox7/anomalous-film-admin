@@ -11,6 +11,11 @@ body {
   color: $gray-lightest;
 }
 
+textarea {
+  font-family: 'Open Sans', sans-serif;
+  color: $gray-lightest;
+}
+
 input:focus, button:focus, select:focus, textarea:focus {
   outline: none;
 }

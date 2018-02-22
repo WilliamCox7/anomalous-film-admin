@@ -1,0 +1,73 @@
+@import "../../vars.scss";
+
+.Section {
+  margin-bottom: 45px;
+  input[type="text"] {
+    color: $orange-main;
+    background: none;
+    border: none;
+    font-size: 16px;
+    &::-webkit-input-placeholder {
+      color: $orange-main;
+    }
+    &:-ms-input-placeholder {
+      color: $orange-main;
+    }
+    &::-ms-input-placeholder {
+      color: $orange-main;
+    }
+    &::placeholder {
+      color: $orange-main;
+    }
+    @media(max-width: 560px) {
+      margin: auto 10px;
+    }
+  }
+  .youtube-container {
+    width: 100%;
+    position: relative;
+    background: $gray-dark;
+  	padding-bottom: 56.25%;
+  	height: 0;
+    margin: 10px 0px;
+    -webkit-box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.35);
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.35);
+    iframe {
+      position: absolute;
+      z-index: 1;
+    	top: 0;
+    	left: 0;
+    	width: 100%;
+    	height: 100%;
+      opacity: 0.0;
+      -webkit-transition: opacity 1.5s ease;
+      transition: opacity 1.5s ease;
+    }
+    img {
+      width: 200px;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .youtube-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+    &:hover {
+      .mute-button {
+        opacity: 1.0;
+      }
+    }
+  }
+  .content-container {
+    margin: 20px 0px;
+    @media(max-width: 560px) {
+      margin: 20px 10px;
+    }
+  }
+}

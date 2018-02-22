@@ -27,6 +27,8 @@ const PostService = require('./services/PostService');
 const AuthService = require('./services/AuthService');
 
 app.get('/post', PostService.getPost);
+app.put('/post', PostService.savePost);
+app.post('/post', PostService.publishPost);
 
 // auth
 
