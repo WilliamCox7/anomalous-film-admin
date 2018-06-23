@@ -1,14 +1,14 @@
-const nconf = require('nconf');
+let production = process.env.NODE_ENV; // determines if env is in production or development
 
-nconf.argv().env().file('keys.json');
+let uri;
 
-const user = encodeURIComponent(nconf.get('mongoUser'));
-const pass = encodeURIComponent(nconf.get('mongoPass'));
-const host = nconf.get('mongoHost');
-const port = nconf.get('mongoPort');
-const database = nconf.get('mongoDatabase');
-
-let uri = `mongodb://${user}:${pass}@${host}:${port}/${database}`;
+if (production) {
+  let env = process.env;
+  uri = `mongodb://${env.USER}:${env.PASS}@${env.HOST}:${env.MONGO_PORT}/${env.BASE}`;
+} else {
+  let env = require('../config').env;
+  uri = `mongodb://${env.HOST}:${env.MONGO_PORT}/${env.BASE}`;
+}
 
 module.exports = function() {
   return uri;

@@ -2,6 +2,7 @@ node_modules
 config
 build/*
 !build/index.html
-DS_Store
+!build/favicon.png
+.DS_Store
 client/components/_Template
 keys.json

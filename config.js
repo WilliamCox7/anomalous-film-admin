@@ -1,9 +1,10 @@
-// config for development
-const PORT = 3001;
-const MONGO = "mongodb://localhost:27017/anomalous";
+const ENV = {
+  "HOST": "localhost",
+  "MONGO_PORT": "27017",
+  "BASE": "anomalous"
+}
 
 module.exports = {
-  mongoURI: MONGO,
-  port: PORT,
-  secret: "af9w84oa4noifnadsvwe45ve5vasearf"
+  env: ENV,
+  secret: 'c048utm9q84nsvsegsrcfasr'
 }

@@ -6,14 +6,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const nconf = require('nconf');
 const app = module.exports = express();
 
-nconf.argv().env().file('keys.json');
-
-app.set('port', (process.env.PORT || config.port));
+app.set('port', (process.env.PORT || 3001));
 app.use(session({
-  secret: (config.secret || nconf.secret),
+  secret: (config.secret || process.env.SECRET),
   saveUninitialized: false,
   resave: true
 }));
