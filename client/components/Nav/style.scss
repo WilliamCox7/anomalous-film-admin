@@ -32,9 +32,22 @@
         }
       }
     }
-    section.logout {
-      color: $green-main;
-      cursor: pointer;
+    section.links {
+      a.route-link {
+        color: $green-main;
+        text-decoration: none;
+        margin-right: 30px;
+        &:hover {
+          color: $orange-main;
+        }
+      }
+      .logout {
+        color: $green-main;
+        cursor: pointer;
+        &:hover {
+          color: $orange-main;
+        }
+      }
     }
   }
 }

@@ -25,9 +25,8 @@ class Home extends Component {
         this.props.history.push('/login');
       } else {
         this.props.setUser(response.data[0]);
-        axios.get('/post').then((response) => {
-          delete response.data[0]._id;
-          this.setState(response.data[0]);
+        axios.get('/api/post').then((response) => {
+          if (response.data[0]) this.setState(response.data[0]);
         });
       }
     });
@@ -107,11 +106,11 @@ class Home extends Component {
   }
 
   save() {
-    axios.put("/post", this.state);
+    axios.put("/api/post", this.state);
   }
 
   publish() {
-    axios.post("/post", this.state);
+    axios.post("/api/post", this.state);
     this.setState(emptyState, () => {
       this.save();
     });
@@ -128,7 +127,11 @@ class Home extends Component {
 
     return (
       <div className="Home flex fd-c">
-        <Thumbnail post={this.state} updateThumbnail={this.updateThumbnail} />
+        <div className="thumb-container flex jc-sb">
+          <Thumbnail post={this.state} />
+          <input type="text" value={this.state.thumbnail}
+            onChange={this.updateThumbnail} placeholder="image url..." />
+        </div>
         <div className="titles flex jc-sb">
           <input type="text" placeholder="Work" value={this.state.work} onChange={this.updateWork} />
           <input type="text" placeholder="Title" value={this.state.title} onChange={this.updateTitle} />

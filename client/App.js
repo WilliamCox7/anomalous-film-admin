@@ -1,5 +1,5 @@
 import { React, Component, BrowserRouter, Switch, Route } from './packages';
-import { Home, Login, Nav } from './components';
+import { Home, Login, Nav, List } from './components';
 import './reset.scss';
 import './main.scss';
 
@@ -10,6 +10,7 @@ class App extends Component {
         <div className="App">
           <Nav />
           <Route exact path="/" component={Home} />
+          <Route exact path="/list" component={List} />
           <Route path="/login" component={Login} />
         </div>
       </BrowserRouter>

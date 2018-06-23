@@ -2,8 +2,8 @@ let mod = require('../server_modules');
 
 module.exports = {
 
-  getPost: (req, res) => {
-    mod.getPost()
+  getList: (req, res) => {
+    mod.getList()
     .then((result) => {
       res.status(200).send(result);
     })
@@ -12,18 +12,8 @@ module.exports = {
     });
   },
 
-  savePost: (req, res) => {
-    mod.savePost(req.body)
-    .then((result) => {
-      res.status(200).send(result);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-  },
-
-  publishPost: (req, res) => {
-    mod.publishPost(req.body)
+  addToList: (req, res) => {
+    mod.addToList(req.body)
     .then((result) => {
       res.status(200).send(result);
     })

@@ -33,7 +33,10 @@ class Nav extends Component {
             </Link>
           </section>
 
-          <section onClick={this.logout} className="logout">Logout</section>
+          <section className="links flex">
+            <Link to="/list" className="route-link">List</Link>
+            <div onClick={this.logout} className="logout">Logout</div>
+          </section>
 
         </div>
       </div>

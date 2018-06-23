@@ -35,6 +35,21 @@
       margin: 20px 10px;
     }
   }
+  .thumb-container {
+    input[type="text"] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 334px;
+      border-radius: 4px;
+      background: $gray-dark;
+      border: none;
+      padding: 7px 9px;
+      color: $orange-main;
+      -webkit-box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.35);
+      box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.35);
+    }
+  }
   .content {
     margin-top: 20px;
   }

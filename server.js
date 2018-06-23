@@ -22,10 +22,13 @@ app.use(cookieParser());
 
 const PostService = require('./services/PostService');
 const AuthService = require('./services/AuthService');
+const ListService = require('./services/ListService');
 
-app.get('/post', PostService.getPost);
-app.put('/post', PostService.savePost);
-app.post('/post', PostService.publishPost);
+app.get('/api/post', PostService.getPost);
+app.put('/api/post', PostService.savePost);
+app.post('/api/post', PostService.publishPost);
+app.get('/api/list', ListService.getList);
+app.post('/api/list', ListService.addToList);
 
 // auth
 

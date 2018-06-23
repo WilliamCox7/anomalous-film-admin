@@ -23,12 +23,14 @@ class Thumbnail extends Component {
             </div>
           ) : null}
           <div className="circle-text flex fd-c ai-c">
-            <h1>{this.props.post.work}</h1>
-            <h1>{this.props.post.title}</h1>
+            {this.props.post.work ? (
+              <h1>{this.props.post.work}</h1>
+            ) : null}
+            {this.props.post.title ? (
+              <h1>{this.props.post.title}</h1>
+            ) : null}
           </div>
         </div>
-        <input type="text" value={this.props.post.thumbnail}
-          onChange={this.props.updateThumbnail} placeholder="image url..." />
       </div>
     );
   }
