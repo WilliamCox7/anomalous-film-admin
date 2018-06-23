@@ -26,6 +26,9 @@ class Thumbnail extends Component {
             {this.props.post.work ? (
               <h1>{this.props.post.work}</h1>
             ) : null}
+            {this.props.post.rating ? (
+              <h1>{this.props.post.rating}%</h1>
+            ) : null}
             {this.props.post.title ? (
               <h1>{this.props.post.title}</h1>
             ) : null}
