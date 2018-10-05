@@ -19,14 +19,7 @@ module.exports = {
   mode: 'production',
 
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        minimize: true,
-        compress: {
-          warnings: false
-        }
-      })
-    ]
+    minimizer: [new UglifyJsPlugin()]
   },
 
   plugins: [
