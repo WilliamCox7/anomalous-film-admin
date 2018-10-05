@@ -15,6 +15,8 @@ module.exports = {
     publicPath: '/'
   },
 
+  mode: 'production',
+
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -31,9 +33,9 @@ module.exports = {
   ],
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js?$/,
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: /node_modules/
     }, {
       test: /\.scss$/,
@@ -44,11 +46,14 @@ module.exports = {
     }, {
       test: /\.(ttf|eot|woff|woff2)$/,
       loader: 'file-loader'
+    }, {
+      test: /\.json$/,
+      loader: 'json-loader'
     }]
   },
 
   resolve: {
-    extensions: ["", ".js", ".css"]
+    extensions: [".js", ".css"]
   }
 
 }

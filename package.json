@@ -1,54 +1,46 @@
 {
-  "name": "anomolous-film-admin",
+  "name": "anomalous-film-admin",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "heroku-postbuild": "webpack -p --config ./webpack.config.prod.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DevMountain/anomolous-film-admin.git"
+    "url": "git+https://github.com/anomalous-film-admin.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DevMountain/anomolous-film-admin/issues"
-  },
-  "homepage": "https://github.com/DevMountain/anomolous-film-admin#readme",
+  "author": "William Cox",
+  "license": "",
   "devDependencies": {
-    "babel-cli": "^6.22.2",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.22.0",
-    "css-loader": "^0.26.1",
-    "file-loader": "^0.10.0",
-    "node-sass": "^4.3.0",
-    "sass-loader": "^4.1.1",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "json-loader": "^0.5.7",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "autosize": "^4.0.0",
     "axios": "^0.16.2",
     "body-parser": "^1.16.1",
-    "cookie-parser": "^1.4.3",
-    "debounce": "^1.1.0",
-    "express": "^4.16.2",
-    "express-session": "^1.15.6",
-    "mongodb": "^2.2.33",
-    "nconf": "^0.10.0",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
+    "express": "^4.14.1",
+    "material-ui-color-picker": "^2.1.1",
+    "mongodb": "^2.2.36",
+    "rc-color-picker": "^1.2.6",
     "react": "^15.5.4",
+    "react-color": "^2.14.1",
+    "react-color-picker": "^4.0.2",
     "react-dom": "^15.5.4",
     "react-redux": "^4.4.6",
+    "react-responsive": "^4.1.0",
     "react-router-dom": "^4.2.2",
-    "react-youtube": "^7.5.0",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0",
-    "youtube-validate": "^1.2.4"
+    "redux-thunk": "^2.2.0"
   }
 }

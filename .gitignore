@@ -1,8 +1,7 @@
 node_modules
-config
 build/*
 !build/index.html
 !build/favicon.png
 .DS_Store
 client/components/_Template
-keys.json
+config.js

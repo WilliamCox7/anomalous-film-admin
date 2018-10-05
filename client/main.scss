@@ -1,23 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import './vars.scss';
+@import url('https://fonts.googleapis.com/css?family=Raleway:100');
+@import "./vars.scss";
 
-html {
-  font-family: 'Open Sans', sans-serif;
+html, textarea {
+  font-family: 'Raleway', sans-serif;
 }
 
-body {
-  background-color: $gray-dark;
-  background-image: url('./assets/paisley.png');
-  color: $gray-lightest;
+html, body, #root, .App {
+  height: 100%;
 }
 
-textarea {
-  font-family: 'Open Sans', sans-serif;
-  color: $gray-lightest;
-}
-
-input:focus, button:focus, select:focus, textarea:focus {
-  outline: none;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .flex {
@@ -28,30 +25,59 @@ input:focus, button:focus, select:focus, textarea:focus {
 
 .jc-c {
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .jc-sb {
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.jc-sa {
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.jc-fe {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.jc-fs {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
 }
 
 .ai-c {
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.ai-fs {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.ai-fe {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
 }
 
 .fd-c {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .fw-w {
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }

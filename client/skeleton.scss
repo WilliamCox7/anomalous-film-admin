@@ -1,0 +1,31 @@
+@import "./vars.scss";
+
+h1 {
+  color: white;
+  font-size: 40px;
+}
+
+h3 {
+  color: white;
+  font-size: 20px;
+}
+
+input {
+  font-size: 20px;
+  color: white;
+  padding: 10px;
+  border: none;
+  background: rgba(0, 0, 0, 0.16);
+  &::-webkit-input-placeholder {
+    color: white;
+  }
+  &:-ms-input-placeholder {
+    color: white;
+  }
+  &::-ms-input-placeholder {
+    color: white;
+  }
+  &::placeholder {
+    color: white;
+  }
+}

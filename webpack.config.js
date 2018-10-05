@@ -15,21 +15,32 @@ module.exports = {
     publicPath: '/'
   },
 
+  mode: 'development',
+
   module: {
-    loaders: [{
-      test: /\.js?$/,
-      loader: 'babel',
-      exclude: /node_modules/
-    }, {
-      test: /\.scss$/,
-      loader: 'style-loader!css-loader!sass-loader'
-    }, {
-      test: /\.(jpg|png|svg)$/,
-      loader: 'file-loader'
-    }, {
-      test: /\.(ttf|eot|woff|woff2)$/,
-      loader: 'file-loader'
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude:/node_modules/,
+        loaders: [ 'babel-loader' ]
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader'
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.(ttc|ttf|eot|woff|woff2)$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      }
+    ]
   },
 
   devServer: {
@@ -37,7 +48,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ["", ".js", ".css"]
+    extensions: [".js", ".css"]
   }
 
 }

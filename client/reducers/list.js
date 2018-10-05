@@ -1,22 +1,29 @@
-const SET = 'post/SET';
+const INIT = 'list/INIT';
 
-const initState = {}
+const initState = {
+  items: []
+};
 
 export default function reducer(state=initState, action) {
+
   let editState = Object.assign({}, state);
+  let payload = action.payload;
+
   switch(action.type) {
 
-    case SET:
-      editState = action.post;
+    case INIT:
+      editState.items = payload;
       return Object.assign({}, state, editState);
 
     default: return state;
+
   }
+
 }
 
-export function setPost(post) {
+export function initializeList(list) {
   return {
-    type: SET,
-    post: post
+    type: INIT,
+    payload: list
   }
 }

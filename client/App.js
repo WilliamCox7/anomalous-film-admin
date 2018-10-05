@@ -1,17 +1,16 @@
-import { React, Component, BrowserRouter, Switch, Route } from './packages';
-import { Home, Login, Nav, List } from './components';
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from "react-router-dom";
+import List from './pages/List';
 import './reset.scss';
 import './main.scss';
+import './skeleton.scss';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Nav />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/list" component={List} />
-          <Route path="/login" component={Login} />
+          <Route exact path="/" component={List} />
         </div>
       </BrowserRouter>
     );
