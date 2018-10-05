@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -17,13 +18,18 @@ module.exports = {
 
   mode: 'production',
 
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        minimize: true,
+        compress: {
+          warnings: false
+        }
+      })
+    ]
+  },
+
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-        warnings: false
-      }
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
