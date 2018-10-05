@@ -18,7 +18,6 @@ module.exports = {
   mode: 'production',
 
   plugins: [
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {
