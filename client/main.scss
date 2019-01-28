@@ -1,20 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:100');
 @import "./vars.scss";
 
-html, textarea {
+html, textarea, input, select {
   font-family: 'Raleway', sans-serif;
 }
 
 html, body, #root, .App {
-  height: 100%;
+  background: $dark-gray;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="date"],
+.input-checkbox {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+select {
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
 }
 
 .flex {

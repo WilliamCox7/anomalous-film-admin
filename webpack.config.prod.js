@@ -3,33 +3,11 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-
   devtool: 'source-map',
-
   entry: [
     './client/index.js'
   ],
-
-  output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'bundle.js',
-    publicPath: '/'
-  },
-
   mode: 'production',
-
-  optimization: {
-    minimizer: [new UglifyJsPlugin()]
-  },
-
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
-  ],
-
   module: {
     rules: [{
       test: /\.js?$/,
@@ -42,16 +20,31 @@ module.exports = {
       test: /\.(jpg|png|svg)$/,
       loader: 'file-loader'
     }, {
-      test: /\.(ttf|eot|woff|woff2)$/,
+      test: /\.(ttc|ttf|eot|woff|woff2)$/,
       loader: 'file-loader'
     }, {
       test: /\.json$/,
       loader: 'json-loader'
     }]
   },
-
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin()
+    ]
+  },
+  output: {
+    path: path.join(__dirname, '/build'),
+    filename: 'bundle.js',
+    publicPath: '/'
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ],
   resolve: {
     extensions: [".js", ".css"]
   }
-
 }

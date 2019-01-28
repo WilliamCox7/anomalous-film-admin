@@ -1,0 +1,43 @@
+@import '../../../../vars.scss';
+
+.Content {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  .heading {
+    margin-top: 40px;
+    h1 {
+      color: $green;
+      font-size: 40px;
+    }
+    h2 {
+      color: $green;
+      font-size: 16px;
+      margin-left: 10px;
+      margin-top: -4px;
+    }
+  }
+  pre {
+    color: $copy;
+    font-size: 18px;
+    white-space: pre-wrap;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  h3 {
+    color: $tomato;
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .context {
+    margin-top: 20px;
+    h4 {
+      color: $green;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+    img {
+      margin-right: 10px;
+    }
+  }
+}

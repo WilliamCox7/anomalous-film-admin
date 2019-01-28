@@ -1,0 +1,98 @@
+@import "../../vars.scss";
+
+#Home {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -3;
+  .film-wrapper {
+    position: relative;
+    height: 100%;
+    padding-top: 100px;
+    max-width: calc(100% - 200px);
+    margin: auto;
+    z-index: -2;
+    button {
+      padding: 7px 16px;
+      border: solid 1px $gold;
+      background: $dark-gray;
+      border-radius: 5px;
+      font-size: 20px;
+      margin-top: 47px;
+      color: $gold;
+      &:active {
+        background: $gold;
+        color: $darker-gray;
+      }
+    }
+    .position-buttons {
+      position: absolute;
+      right: 0;
+      top: 180px;
+      height: 100px;
+      width: 100px;
+      margin: auto;
+      z-index: 4;
+      .arrow {
+        background: $darker-gray;
+        border: solid 1px $gold;
+        border-radius: 5px;
+        color: $gold;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        div {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+        &:active {
+          background: $gold;
+          color: $darker-gray;
+        }
+      }
+      #up-arrow {
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+      }
+      #down-arrow {
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+      }
+      #right-arrow {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+      }
+      #left-arrow {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+      }
+    }
+  }
+  .search-results {
+    width: 100%;
+    position: absolute;
+    background: $dark-gray;
+    font-size: 20px;
+    color: $green;
+    margin-top: -10px;
+    height: 100%;
+    .search-result {
+      margin-bottom: 10px;
+    }
+    .poster-wrapper {
+      width: 60px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

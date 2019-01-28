@@ -1,0 +1,27 @@
+@import '../../../../vars.scss';
+
+.Graph {
+  width: 100%;
+  .bar {
+    position: relative;
+    height: 24px;
+    .rating-bar {
+      background: $green;
+      position: absolute;
+      height: 100%;
+      text-align: right;
+      padding: 3px 5px;
+      font-weight: bold;
+      font-size: 17px;
+    }
+    .imdb-bar {
+      background: $gold;
+      position: absolute;
+      height: 100%;
+      text-align: right;
+      padding: 3px 5px;
+      font-weight: bold;
+      font-size: 17px;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@import '../../../../vars.scss';
+
+.Hexagon {
+  width: 330px;
+  height: 280px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  overflow: hidden;
+  visibility: hidden;
+  -webkit-transform: rotate(120deg);
+  transform: rotate(120deg);
+  .image-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: rotate(-60deg);
+    transform: rotate(-60deg);
+    .image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      visibility: visible;
+      -webkit-transform: rotate(-60deg);
+      transform: rotate(-60deg);
+      .reflection {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: -webkit-gradient(linear, left top, left bottom, from($dark-gray), to(transparent));
+        background-image: linear-gradient($dark-gray, transparent);
+      }
+    }
+  }
+}
