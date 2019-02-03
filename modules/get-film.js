@@ -7,10 +7,11 @@ module.exports = (params) => new Promise((resolve, reject) => {
 
     let search = {
       tmdbId: Number(params.id),
-      season: params.season === "undefined" ? "" : params.season,
-      episode: params.episode === "undefined" ? "" : params.episode,
       type: params.type
     };
+
+    if (params.season && params.season !== "undefined") search.season = params.season;
+    if (params.episode && params.episode !== "undefined") search.episode = params.episode;
     
     db.collection('list').find(search, (err, result) => {
       if (err) reject(err);

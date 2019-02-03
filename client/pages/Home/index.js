@@ -32,7 +32,7 @@ class Home extends Component {
       posVer: 0,
       lastResult: null
     }
-    this.tmdbSearch = this.tmdbSearch.bind(this);
+    this.tmdbSearch = debounce(this.tmdbSearch.bind(this), 250);
     this.update = this.update.bind(this);
     this.populate = this.populate.bind(this);
     this.position = this.position.bind(this);
@@ -40,6 +40,7 @@ class Home extends Component {
     this.cancelHold = this.cancelHold.bind(this);
     this.toggle = this.toggle.bind(this);
     this.save = this.save.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
     this.getTVSeasonRating = this.getTVSeasonRating.bind(this);
   }
 
@@ -90,21 +91,26 @@ class Home extends Component {
         this.populate(selection);
       }
       if (field === "type" && this.state.film.title) {
-        this.tmdbSearch({target: {value: this.state.film.title}});
+        this.tmdbSearch(this.state.film.title);
       }
     });
   }
-  
-  tmdbSearch(e) {
+
+  updateSearch(e) {
     let title = e.target.value;
-    let queryStr = e.target.value.replace(" ", "+");
+    let newState = Object.assign({}, this.state);
+    newState.film.title = title;
+    this.setState(newState, () => this.tmdbSearch(title))
+  }
+  
+  tmdbSearch(title) {
+    let queryStr = title.replace(" ", "+");
     let type = this.state.film.type.indexOf('tv') > -1 ? 'tv' : 'movie';
     let apiUrl = `https://api.themoviedb.org/3/search/${type}?api_key=98b81f5311c6ff008b592a0366f13a13&query=${queryStr}`;
     axios.get(apiUrl)
     .then((result) => {
       let newState = Object.assign({}, this.state);
       newState.results = result.data.results;
-      newState.film.title = title;
       this.setState(newState);
     })
     .catch((err) => {
@@ -114,7 +120,7 @@ class Home extends Component {
 
   populate(selection, fromTmdb) {
     let newState = Object.assign({}, this.state);
-    axios.get(`/api/film/${selection.id}/${selection.season}/${selection.episode}/${newState.film.type}`)
+    axios.get(`/api/film/${selection.id}/${selection.season || newState.film.season || "undefined"}/${selection.episode || newState.film.season || "undefined"}/${newState.film.type}`)
     .then((result) => {
       if (result.data.length) {
         newState.film = result.data[0];
@@ -242,7 +248,7 @@ class Home extends Component {
       <div id="Home">
         <div className="film-wrapper">
           <Film film={this.state.film} update={this.update} type={this.state.type} 
-            tmdbSearch={this.tmdbSearch} toggle={this.toggle} />
+            tmdbSearch={this.updateSearch} toggle={this.toggle} />
           {results.length ? (
             <div className="search-results">
               {results}
@@ -282,3 +288,18 @@ class Home extends Component {
 }
 
 export default Home;
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};

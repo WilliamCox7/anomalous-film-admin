@@ -17,7 +17,10 @@ class Film extends Component {
         <div className="form">
           <div className="form-section flex jc-sb">
             <input id="input-1" className="green" type="text"
-              placeholder={placeholder} onChange={this.props.tmdbSearch} value={this.props.film.title} />
+              placeholder={placeholder} onChange={(e) => {
+                e.persist();
+                return this.props.tmdbSearch(e);
+              }} value={this.props.film.title} />
             <select id="select-1" className="gold" value={this.props.film.type}
               onChange={this.props.update} name="type">
               <option value="movie">movie</option>
