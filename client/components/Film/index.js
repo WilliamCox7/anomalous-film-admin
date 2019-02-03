@@ -47,6 +47,12 @@ class Film extends Component {
                 onChange={this.props.update} name="episode" value={this.props.film.episode} />
             </div>
           ) : null}
+          {this.props.film.type === 'movie' ? (
+            <div className="form-section flex jc-sb">
+              <input id="input-7" className="green" type="text" onChange={this.props.update}
+                value={this.props.film.best} name="best" placeholder="best picture" />
+            </div>
+          ) : null}
         </div>
         <Hexagon film={this.props.film} />
         <Hexagon film={this.props.film} reflection />

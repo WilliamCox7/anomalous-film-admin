@@ -24,7 +24,8 @@ class Home extends Component {
         tmdbId: null,
         type: 'movie',
         season: "",
-        episode: ""
+        episode: "",
+        best: ""
       },
       results: [],
       posHor: 0,
@@ -68,7 +69,8 @@ class Home extends Component {
         tmdbId: null,
         type: value,
         season: "",
-        episode: ""
+        episode: "",
+        best: ""
       }
       newState.posHor = 0;
       newState.posVer = 0;
@@ -87,7 +89,7 @@ class Home extends Component {
         selection.id = selection.tmdbId;
         this.populate(selection);
       }
-      if (field === "type") {
+      if (field === "type" && this.state.film.title) {
         this.tmdbSearch({target: {value: this.state.film.title}});
       }
     });
@@ -128,6 +130,7 @@ class Home extends Component {
         newState.film.imdb = selection.vote_average;
         newState.film.tmdbId = selection.id;
         newState.film.viewed = new Date();
+        newState.film.best = "";
         document.getElementById("input-2").value = "";
         newState.results = [];
         newState.lastResult = selection;
@@ -196,7 +199,8 @@ class Home extends Component {
         tmdbId: null,
         type: this.state.film.type,
         season: "",
-        episode: ""
+        episode: "",
+        best: ""
       };
       newState.posHor = 0;
       newState.posVer = 0;
