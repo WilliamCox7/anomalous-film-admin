@@ -30,8 +30,20 @@ class Content extends Component {
             )}
           </span>
         </div>
-        <div className="heading flex ai-fe">
-          <h1>{this.props.film.title}</h1><h2>({releaseDate})</h2>
+        <div className="heading flex ai-fe jc-sb">
+          <div className="flex ai-fe">
+            <h1>{this.props.film.title}</h1><h2>({releaseDate})</h2>
+          </div>
+          {this.props.film.type === 'tv-episode' ? (
+            <div>
+              <h1>S{this.props.film.season}E{this.props.film.episode}</h1>
+            </div>
+          ) : null}
+          {this.props.film.type === 'tv-season' ? (
+            <div>
+              <h1>S{this.props.film.season}</h1>
+            </div>
+          ) : null}
         </div>
         <pre>{this.props.film.tagline}</pre>
         <div className="flex jc-sb ai-c">

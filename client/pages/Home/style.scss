@@ -18,8 +18,12 @@
       background: $dark-gray;
       border-radius: 5px;
       font-size: 20px;
-      margin-top: 47px;
       color: $gold;
+      position: absolute;
+      left: 0;
+      top: 215px;
+      margin: auto;
+      z-index: 4;
       &:active {
         background: $gold;
         color: $darker-gray;

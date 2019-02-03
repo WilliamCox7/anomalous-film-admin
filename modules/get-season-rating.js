@@ -6,17 +6,25 @@ module.exports = (params) => new Promise((resolve, reject) => {
     if (err) reject(err);
 
     let search = {
-      tmdbId: Number(params.id),
-      season: params.season === "undefined" ? "" : params.season,
-      episode: params.episode === "undefined" ? "" : params.episode,
-      type: params.type
+      title: params.title,
+      season: params.season,
+      type: 'tv-episode'
     };
-    
+
     db.collection('list').find(search, (err, result) => {
       if (err) reject(err);
       result.toArray((err, result) => {
+
+        let rating = 0;
+
+        if (result.length) {
+          rating = result.reduce((a, e) => Number(e.rating) + a, rating) / result.length;
+        }
+
+        rating = rating.toString();
+
         if (err) reject(err);
-        resolve(result);
+        resolve(rating);
       });
     })
   });

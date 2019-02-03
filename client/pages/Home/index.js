@@ -17,16 +17,19 @@ class Home extends Component {
         title: "",
         released: null,
         tagline: "",
-        rating: 0,
-        imdb: 0,
+        rating: "",
+        imdb: "",
         viewed: new Date(),
         location: "",
         tmdbId: null,
-        type: 'movie'
+        type: 'movie',
+        season: "",
+        episode: ""
       },
       results: [],
       posHor: 0,
-      posVer: 0
+      posVer: 0,
+      lastResult: null
     }
     this.tmdbSearch = this.tmdbSearch.bind(this);
     this.update = this.update.bind(this);
@@ -36,9 +39,12 @@ class Home extends Component {
     this.cancelHold = this.cancelHold.bind(this);
     this.toggle = this.toggle.bind(this);
     this.save = this.save.bind(this);
+    this.getTVSeasonRating = this.getTVSeasonRating.bind(this);
   }
 
   update(e) {
+    let field = e.target.name;
+    let value = e.target.value;
     let newState = Object.assign({}, this.state);
     if (e.target.name === "viewed") {
       let viewDate = moment(e.target.value).toDate();
@@ -46,43 +52,92 @@ class Home extends Component {
     } else {
       newState.film[e.target.name] = e.target.value;
     }
-    this.setState(newState);
+    if (field === "type") {
+      newState.film = {
+        poster: "",
+        posterPos: "0px 0px",
+        like: false,
+        award: false,
+        title: this.state.film.title,
+        released: null,
+        tagline: "",
+        rating: "",
+        imdb: "",
+        viewed: new Date(),
+        location: "",
+        tmdbId: null,
+        type: value,
+        season: "",
+        episode: ""
+      }
+      newState.posHor = 0;
+      newState.posVer = 0;
+    }
+    this.setState(newState, () => {
+      if (this.state.film.type === 'tv-season' && this.state.film.poster && this.state.film.season) {
+        this.getTVSeasonRating();
+        if (field === "season") {
+          let selection = Object.assign({}, this.state.film);
+          selection.id = selection.tmdbId;
+          this.populate(selection);
+        }
+      }
+      if (this.state.film.type === 'tv-episode' && this.state.film.season && this.state.film.episode && (field === "season" || field === "episode")) {
+        let selection = Object.assign({}, this.state.film);
+        selection.id = selection.tmdbId;
+        this.populate(selection);
+      }
+      if (field === "type") {
+        this.tmdbSearch({target: {value: this.state.film.title}});
+      }
+    });
   }
   
   tmdbSearch(e) {
+    let title = e.target.value;
     let queryStr = e.target.value.replace(" ", "+");
-    let apiUrl = `https://api.themoviedb.org/3/search/${this.state.film.type}?api_key=98b81f5311c6ff008b592a0366f13a13&query=${queryStr}`;
+    let type = this.state.film.type.indexOf('tv') > -1 ? 'tv' : 'movie';
+    let apiUrl = `https://api.themoviedb.org/3/search/${type}?api_key=98b81f5311c6ff008b592a0366f13a13&query=${queryStr}`;
     axios.get(apiUrl)
     .then((result) => {
-      this.setState({results: result.data.results});
+      let newState = Object.assign({}, this.state);
+      newState.results = result.data.results;
+      newState.film.title = title;
+      this.setState(newState);
     })
     .catch((err) => {
       console.error(err);
     });
   }
 
-  populate(selection) {
+  populate(selection, fromTmdb) {
     let newState = Object.assign({}, this.state);
-    axios.get(`/api/film/${selection.id}`)
+    axios.get(`/api/film/${selection.id}/${selection.season}/${selection.episode}/${newState.film.type}`)
     .then((result) => {
       if (result.data.length) {
         newState.film = result.data[0];
         document.getElementById("input-2").value = newState.film.rating;
         document.getElementById("input-4").value = newState.film.location;
-      } else {
+      } else if (fromTmdb) {
         newState.film.poster = selection.poster_path;
         newState.film.like = false;
         newState.film.award = false;
-        newState.film.title = selection.title;
-        newState.film.released = selection.release_date;
+        newState.film.title = selection.title || selection.name;
+        newState.film.released = selection.release_date || selection.first_air_date;
         newState.film.tagline = selection.overview;
         newState.film.imdb = selection.vote_average;
         newState.film.tmdbId = selection.id;
+        newState.film.viewed = new Date();
+        document.getElementById("input-2").value = "";
         newState.results = [];
+        newState.lastResult = selection;
+      } else {
+        this.populate(newState.lastResult, true);
       }
-      this.setState(newState);
+      this.setState(newState, () => {
+        if (this.state.film.type === 'tv-season' && this.state.film.poster && this.state.film.season) this.getTVSeasonRating();
+      });
     });
-    document.getElementById("input-1").value = selection.title;
   }
 
   position(dir, px) {
@@ -134,19 +189,29 @@ class Home extends Component {
         title: "",
         released: null,
         tagline: "",
-        rating: 0,
-        imdb: 0,
+        rating: "",
+        imdb: "",
         viewed: new Date(),
         location: "",
         tmdbId: null,
-        type: 'movie'
+        type: this.state.film.type,
+        season: "",
+        episode: ""
       };
       newState.posHor = 0;
       newState.posVer = 0;
       this.setState(newState, () => {
-        document.getElementById("input-1").value = "";
         document.getElementById("input-2").value = "";
       });
+    });
+  }
+
+  getTVSeasonRating() {
+    axios.get(`/api/season-rating/${this.state.film.title}/${this.state.film.season}`)
+    .then((result) => {
+      let newState = Object.assign({}, this.state);
+      newState.film.rating = result.data;
+      this.setState(newState);
     });
   }
 
@@ -157,12 +222,12 @@ class Home extends Component {
     results = results.map((film, i) => {
       return (
         <div key={i} className="search-result flex jc-sb ai-c" 
-          onClick={() => this.populate(film)}>
+          onClick={() => this.populate(film, true)}>
           <div className="poster-wrapper">
             <img src={`http://image.tmdb.org/t/p/w500/${film.poster_path}`} />
           </div>
-          <div>{film.title}</div>
-          <div>{film.release_date}</div>
+          <div>{this.state.film.type === 'movie' ? film.title : film.name}</div>
+          <div>{this.state.film.type === 'movie' ? film.release_date : film.first_air_date}</div>
         </div>
       );
     });
@@ -188,13 +253,19 @@ class Home extends Component {
               </div>
               <div id="down-arrow" className="arrow flex jc-c ai-c" 
                 onClick={() => this.position('down', 1)} onTouchStart={() => this.setHold('down')}
-                onTouchEnd={this.cancelHold}><div></div>↓</div>
+                onTouchEnd={this.cancelHold}>
+                <div></div>↓
+              </div>
               <div id="left-arrow" className="arrow flex jc-c ai-c" 
                 onClick={() => this.position('left', 1)} onTouchStart={() => this.setHold('left')}
-                onTouchEnd={this.cancelHold}><div></div>←</div>
+                onTouchEnd={this.cancelHold}>
+                <div></div>←
+              </div>
               <div id="right-arrow" className="arrow flex jc-c ai-c" 
                 onClick={() => this.position('right', 1)} onTouchStart={() => this.setHold('right')}
-                onTouchEnd={this.cancelHold}><div></div>→</div>
+                onTouchEnd={this.cancelHold}>
+                <div></div>→
+              </div>
             </div>
           ) : null}
           {this.state.film.tmdbId ? (
