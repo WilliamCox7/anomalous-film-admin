@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = module.exports = express();
+const http = require('http');
 
 app.set('port', (process.env.PORT || 3001));
 app.use(bodyParser.json({limit: '50mb'}));
@@ -16,3 +17,7 @@ app.get('*', (req, res) => {
 app.listen(app.get('port'), () => {
   console.log('localhost:' + app.get('port'));
 });
+
+setInterval(function() {
+  http.get("http://admin-anomalous-film.herokuapp.com");
+}, 300000);
