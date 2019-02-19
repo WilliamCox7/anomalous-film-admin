@@ -1,65 +1,52 @@
+// Packages
 import React, { Component } from 'react';
-import Hexagon from './sub/Hexagon';
-import Content from './sub/Content';
-import moment from 'moment';
+
+// Components
+import Hexagon from '../Hexagon';
+import Content from '../Content';
+
+// Film Class Materials
+import methods from './methods';
+import state from './state';
 import './style.scss';
 
 class Film extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = state(props);
+    methods(this);
+  }
 
   render() {
-    
-    let placeholder = "search for a movie here...";
-    if (this.props.film.type.indexOf('tv') > -1) placeholder = "search for a tv show here...";
-    let viewDate = moment(this.props.film.viewed).format("YYYY-MM-DD")
-
     return (
-      <div className="Film">
-        <div className="form">
-          <div className="form-section flex jc-sb">
-            <input id="input-1" className="green" type="text"
-              placeholder={placeholder} onChange={(e) => {
-                e.persist();
-                return this.props.tmdbSearch(e);
-              }} value={this.props.film.title} />
-            <select id="select-1" className="gold" value={this.props.film.type}
-              onChange={this.props.update} name="type">
-              <option value="movie">movie</option>
-              <option value="tv-episode">tv episode</option>
-              <option value="tv-season">tv season</option>
-              <option value="tv-series">tv series</option>
-            </select>
-            {this.props.film.type === 'tv-season' ? (
-              <input id="input-2" className="green" type="text" placeholder="S" 
-                onChange={this.props.update} name="season" value={this.props.film.season} />
-            ) : (
-              <input id="input-2" className="green" type="text" placeholder="0.0" 
-                onChange={this.props.update} name="rating" value={this.props.film.rating} />
-            )}
+      <div id="Film">
+        <div className="position-buttons">
+          <div id="up-arrow" className="arrow flex jc-c ai-c" 
+            onClick={() => this.position('up', 1)} onTouchStart={() => this.setHold('up')}
+            onTouchEnd={this.cancelHold}>
+            <div></div>↑
           </div>
-          <div className="form-section flex jc-sb">
-            <input id="input-3" className="gold" type="date" onChange={this.props.update}
-              value={viewDate} name="viewed" />
-            <input id="input-4" className="tomato" type="text" placeholder="where did you watch?" 
-              onChange={this.props.update} name="location" value={this.props.film.location} />
+          <div id="down-arrow" className="arrow flex jc-c ai-c" 
+            onClick={() => this.position('down', 1)} onTouchStart={() => this.setHold('down')}
+            onTouchEnd={this.cancelHold}>
+            <div></div>↓
           </div>
-          {this.props.film.type === 'tv-episode' ? (
-            <div className="form-section flex">
-              <input id="input-5" className="green" type="text" placeholder="S" 
-                onChange={this.props.update} name="season" value={this.props.film.season} />
-              <input id="input-6" className="green" type="text" placeholder="E" 
-                onChange={this.props.update} name="episode" value={this.props.film.episode} />
-            </div>
-          ) : null}
-          {this.props.film.type === 'movie' ? (
-            <div className="form-section flex jc-sb">
-              <input id="input-7" className="green" type="text" onChange={this.props.update}
-                value={this.props.film.best} name="best" placeholder="best picture" />
-            </div>
-          ) : null}
+          <div id="left-arrow" className="arrow flex jc-c ai-c" 
+            onClick={() => this.position('left', 1)} onTouchStart={() => this.setHold('left')}
+            onTouchEnd={this.cancelHold}>
+            <div></div>←
+          </div>
+          <div id="right-arrow" className="arrow flex jc-c ai-c" 
+            onClick={() => this.position('right', 1)} onTouchStart={() => this.setHold('right')}
+            onTouchEnd={this.cancelHold}>
+            <div></div>→
+          </div>
         </div>
+        <button onClick={this.save}>save</button>
         <Hexagon film={this.props.film} />
         <Hexagon film={this.props.film} reflection />
-        <Content film={this.props.film} toggle={this.props.toggle} />
+        <Content film={this.props.film} />
       </div>
     );
   }

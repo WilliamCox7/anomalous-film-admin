@@ -1,0 +1,46 @@
+@import '../../vars.scss';
+
+.Rate {
+
+  // heading tags
+  h1.rate-h1 {
+    color: $gold;
+    font-size: 30px;
+    text-align: right;
+  }
+
+  .box {
+    background: $dark-gray;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .ones-container {
+    margin-bottom: 15px;
+    .box {
+      color: $green;
+      border: solid 1px $green;
+    }
+    .active {
+      background: $green;
+      color: $dark-gray;
+      font-weight: bold;
+    }
+  }
+
+  .tens-container {
+    margin-bottom: 40px;
+    .box {
+      color: $tomato;
+      border: solid 1px $tomato;
+    }
+    .active {
+      background: $tomato;
+      color: $dark-gray;
+      font-weight: bold;
+    }
+  }
+
+}

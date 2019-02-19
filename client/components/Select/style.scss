@@ -1,0 +1,53 @@
+@import '../../vars.scss';
+
+.Select {
+
+  position: relative;
+
+  // heading tags
+  h1.select-h1 {
+    color: $dark-gray;
+    position: absolute;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .options-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 150px;
+    height: 100%;
+    color: $green;
+    padding: 15px;
+  }
+
+  .options-container.scroll {
+    max-height: 147.05px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    h2.select-h2 {
+      margin-bottom: 10px;
+    }
+  }
+
+  .options-container.topInset {
+    -webkit-box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.4);
+    box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.4)
+  }
+
+  .options-container.botInset {
+    -webkit-box-shadow: inset 0 -7px 9px -7px rgba(0,0,0,0.4);
+    box-shadow: inset 0 -7px 9px -7px rgba(0,0,0,0.4);
+  }
+
+  .options-container.bothInset {
+    -webkit-box-shadow: 
+      inset 0 7px 9px -7px rgba(0,0,0,0.4),
+      inset 0 -7px 9px -7px rgba(0,0,0,0.4);
+    box-shadow: 
+      inset 0 7px 9px -7px rgba(0,0,0,0.4),
+      inset 0 -7px 9px -7px rgba(0,0,0,0.4);
+  }
+
+}

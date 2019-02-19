@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
-import Home from './pages/Home';
+import Main from './pages/Main';
 import './reset.scss';
 import './main.scss';
 
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Main} />
         </div>
       </BrowserRouter>
     );

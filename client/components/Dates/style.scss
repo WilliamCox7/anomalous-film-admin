@@ -1,0 +1,15 @@
+@import '../../vars.scss';
+
+.Dates {
+  input {
+    background: none;
+    border: none;
+    border-bottom: solid 1px;
+    padding: 10px 0px 2px;
+    font-size: 20px;
+    outline: none;
+    width: 100%;
+    color: $gold;
+    border-color: $gold;
+  }
+}

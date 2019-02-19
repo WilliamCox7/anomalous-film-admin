@@ -1,7 +1,7 @@
 const mongoClient = require('mongodb').MongoClient;
 const mongoURI = require('./get-mongo-uri')();
 
-module.exports = (body) => new Promise((resolve, reject) => {
+module.exports = (body, list) => new Promise((resolve, reject) => {
   if (body._id) delete body._id;
 
   let search = {
@@ -11,7 +11,7 @@ module.exports = (body) => new Promise((resolve, reject) => {
   };
 
   mongoClient.connect(mongoURI, (err, db) => {
-    db.collection('list').update(search, body, { upsert: true }, (err, result) => {
+    db.collection(list).update(search, body, { upsert: true }, (err, result) => {
       if (err) reject(err);
       else resolve(result);
     });
