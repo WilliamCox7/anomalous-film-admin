@@ -47,7 +47,8 @@ export default function() {
 
   else if (step === "award" || step === "like") {
     selectionInterface = (
-      <Bool key={step} update={this.update} name={step} next={this.next} />
+      <Bool key={step} update={this.update} name={step} next={this.next} 
+        type={this.state.film.type} />
     );
   }
 
@@ -55,7 +56,7 @@ export default function() {
 }
 
 function buildBest() {
-  let best = [], min = 1929, max = (new Date()).getFullYear();
+  let best = [""], min = 1929, max = (new Date()).getFullYear();
   for (var i = max; i >= min; i--) {
     best.push(i);
   }

@@ -13,7 +13,7 @@ module.exports = (params) => new Promise((resolve, reject) => {
     if (params.season && params.season !== "undefined") search.season = params.season;
     if (params.episode && params.episode !== "undefined") search.episode = params.episode;
     
-    db.collection('list').find(search, (err, result) => {
+    db.collection('review').find(search, (err, result) => {
       if (err) reject(err);
       result.toArray((err, result) => {
         if (err) reject(err);
