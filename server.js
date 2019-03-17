@@ -19,5 +19,6 @@ app.listen(app.get('port'), () => {
 });
 
 setInterval(function() {
-  http.get("http://admin-anomalous-film.herokuapp.com");
+  let hour = new Date().getHours();
+  if (hour >= 14 || hour <= 2) http.get("http://admin-anomalous-film.herokuapp.com");
 }, 300000);
