@@ -17,8 +17,3 @@ app.get('*', (req, res) => {
 app.listen(app.get('port'), () => {
   console.log('localhost:' + app.get('port'));
 });
-
-setInterval(function() {
-  let hour = new Date().getUTCHours();
-  if (hour >= 0 || hour <= 6) http.get("http://admin-anomalous-film.herokuapp.com");
-}, 300000);
